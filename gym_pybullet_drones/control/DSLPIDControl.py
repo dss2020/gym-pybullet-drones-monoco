@@ -34,9 +34,9 @@ class DSLPIDControl(BaseControl):
         if self.DRONE_MODEL != DroneModel.CF2X and self.DRONE_MODEL != DroneModel.CF2P:
             print("[ERROR] in DSLPIDControl.__init__(), DSLPIDControl requires DroneModel.CF2X or DroneModel.CF2P")
             exit()
-        self.P_COEFF_FOR = np.array([.4, .4, 1.25])
+        self.P_COEFF_FOR = np.array([.24, .24, 1.25])
         self.I_COEFF_FOR = np.array([.05, .05, .05])
-        self.D_COEFF_FOR = np.array([.2, .2, .5])
+        self.D_COEFF_FOR = np.array([.14, .14, .5])
         self.P_COEFF_TOR = np.array([70000., 70000., 60000.])
         self.I_COEFF_TOR = np.array([.0, .0, 500.])
         self.D_COEFF_TOR = np.array([20000., 20000., 12000.])

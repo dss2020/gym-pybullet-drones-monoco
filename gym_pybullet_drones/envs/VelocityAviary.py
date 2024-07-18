@@ -77,6 +77,9 @@ class VelocityAviary(BaseAviary):
         #### Set a limit on the maximum target speed ###############
         self.SPEED_LIMIT = 0.03 * self.MAX_SPEED_KMH * (1000/3600)
 
+        # Target spin speed
+        self.MONOCO_RAD_PER_SEC = -50.0
+
     ################################################################################
 
     def _actionSpace(self):
@@ -162,7 +165,8 @@ class VelocityAviary(BaseAviary):
                                                     cur_ang_vel=state[13:16],
                                                     target_pos=state[0:3], # same as the current position
                                                     target_rpy=np.array([0,0,state[9]]), # keep current yaw
-                                                    target_vel=self.SPEED_LIMIT * np.abs(target_v[3]) * v_unit_vector # target the desired velocity vector
+                                                    target_vel=self.SPEED_LIMIT * np.abs(target_v[3]) * v_unit_vector, # target the desired velocity vector
+                                                    target_rpy_rates=np.array([0,0,self.MONOCO_RAD_PER_SEC]), # keep current yaw rate
                                                     )
             rpm[k,:] = temp
         return rpm
